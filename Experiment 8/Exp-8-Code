@@ -1,0 +1,86 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class BasicInfo
+{
+protected:
+    int id;
+    string name;
+
+public:
+    void readBasic()
+    {
+        cout << "Enter Employee ID: ";
+        cin >> id;
+        cin.ignore();
+
+        cout << "Enter Employee Name: ";
+        getline(cin, name);
+    }
+
+    void displayBasic()
+    {
+        cout << "Employee ID: " << id << endl;
+        cout << "Employee Name: " << name << endl;
+    }
+};
+
+class DepartmentInfo
+{
+protected:
+    string department;
+    string designation;
+
+public:
+    void readDepartment()
+    {
+        cout << "Enter Department: ";
+        getline(cin, department);
+
+        cout << "Enter Designation: ";
+        getline(cin, designation);
+    }
+
+    void displayDepartment()
+    {
+        cout << "Department: " << department << endl;
+        cout << "Designation: " << designation << endl;
+    }
+};
+
+class Employee : public BasicInfo, public DepartmentInfo
+{
+    float salary;
+
+public:
+    void read()
+    {
+        readBasic();
+        readDepartment();
+
+        cout << "Enter Salary: ";
+        cin >> salary;
+    }
+
+    void display()
+    {
+        displayBasic();
+        displayDepartment();
+
+        cout << "Salary: " << salary << endl;
+    }
+};
+
+int main()
+{
+    Employee e;
+
+    cout << "Enter Employee Information" << endl;
+    e.read();
+
+    cout << "\nEmployee Details" << endl;
+    e.display();
+
+    return 0;
+}
